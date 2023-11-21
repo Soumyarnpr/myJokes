@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny JOKES</title>
+    <style>
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #joke-box {
+            width: 600px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid darkblue;
+            border-radius: 15px;
+            background-color: aquamarine;
+        }
+
+        h2 {
+            font-size: 30px;
+            color: darkred;
+        }
+
+        button {
+            width: 150px;
+            height: 75px;
+            background-color: darkblue;
+            color: white;
+            font-size: 18px;
+            border-radius: 25px;
+        }
+
+        span {
+            color: green;
+        }
+        p{
+            padding: 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="joke-box">
+            <h2>--Your Joke--</h2>
+            <p>
+                Loading...
+            </p>
+            <button>Get Next Joke</button>
+            <h6>Created by <span>Soumya Ranjan Parida</span>.</h6>
+        </div>
+    </div>
+
+    <script>
+        const joke = document.querySelector('p');
+        const btn = document.querySelector('button');
+
+        // https://v2.jokeapi.dev/joke/Programming,Dark
+
+        const getJoke = async () => {
+            // try{
+            //     const setHeader = {
+            //         headers: {
+            //             Accept: "application/json"
+            //         }
+            //     }
+
+            //     const res = async fetch('https://api.api-ninjas.com/v1/jokes?limit=1', setHeader);
+            //     const data = async res.json();
+            //     joke.innerHTML = data.joke;
+            // } catch(err) {
+            //     console.log(`Error: ${err}`)
+
+            const setHeader = {
+                headers: {
+                    Accept: "application/json"
+                }
+            }
+
+            fetch('https://v2.jokeapi.dev/joke/Programming,Dark', setHeader).then((res) => res.json()).then((data) => joke.innerHTML=data.joke)
+            .catch((err) => console.log(`ERROR: ${err}`))
+        }
+
+        btn.addEventListener('click', getJoke);
+    </script>
+</body>
+
+</html>
